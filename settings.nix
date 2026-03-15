@@ -2856,6 +2856,14 @@
                   {
                     tiled-state = nullable types.bool;
                   }
+                  {
+                    background-effect = nullable (record {
+                      blur = nullable types.bool;
+                      xray = nullable types.bool;
+                      noise = nullable float-or-int;
+                      saturation = nullable float-or-int;
+                    });
+                  }
                 ]
               )
               // {
@@ -3738,6 +3746,14 @@
             (nullable leaf "variable-refresh-rate" cfg.variable-refresh-rate)
             (nullable leaf "scroll-factor" cfg.scroll-factor)
             (nullable leaf "tiled-state" cfg.tiled-state)
+            (optional-node (cfg.background-effect != null) (
+              plain "background-effect" [
+                (nullable leaf "blur" cfg.background-effect.blur)
+                (nullable leaf "xray" cfg.background-effect.xray)
+                (nullable leaf "noise" cfg.background-effect.noise)
+                (nullable leaf "saturation" cfg.background-effect.saturation)
+              ]
+            ))
           ])
         ]))
         (each cfg.layer-rules (cfg: [

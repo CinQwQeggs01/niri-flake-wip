@@ -24,7 +24,7 @@ For all other configuration options and module usage, please refer to the upstre
 Replace the upstream niri-flake with this fork in your `flake.nix`:
 ```nix
 inputs = {
-  niri-flake.url = "github:<your-username>/niri-flake";
+  niri-flake.url = "github:cinqwqeggs01/niri-flake-wip";
 };
 ```
 

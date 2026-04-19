@@ -1,24 +1,34 @@
 name: Update flake.lock
+
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 */2 * * *'
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   lockfile:
     runs-on: ubuntu-latest
     steps:
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: cachix/cachix-action@v17
         with:
           name: niri-flake-wip
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v23
         with:
